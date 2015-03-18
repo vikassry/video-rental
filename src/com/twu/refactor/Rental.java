@@ -20,18 +20,13 @@ public class Rental {
         return  movie.getPriceCode().getCostFor(daysRented);
     }
 
-    public String addFigures(double thisAmount) {
-        return "\t" + getMovie().getTitle() + "\t"
-                + String.valueOf(thisAmount) + "\n";
-    }
-
-    public boolean isNewRelease() {
-        return (movie.getPriceCode() == MoviePricingCategory.NEW_RELEASE);
+    public String addFigures(double amount) {
+        return "\t"+ getMovie().getTitle()+"\t"+ String.valueOf(amount)+"\n";
     }
 
     public int getFrequentRentalPoints() {
         int frequentRenterPoints = 1;
-        if (isNewRelease() && getDaysRented()> 1)
+        if (movie.isNewRelease() && getDaysRented()> 1)
             frequentRenterPoints++;
         return frequentRenterPoints;
     }

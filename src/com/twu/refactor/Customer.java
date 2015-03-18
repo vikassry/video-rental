@@ -1,6 +1,7 @@
 package com.twu.refactor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 	private String name;
@@ -18,21 +19,32 @@ public class Customer {
 		return name;
 	}
 
+    public double calculateTotalAmount() {
+        double total = 0.0;
+        for (Rental rental : rentalList) {
+            total += rental.getRentalAmount();
+        }
+        return total;
+    }
+
 	public String statement() {
-		double totalAmount = 0;
-		int frequentRenterPoints = 0;
 		String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentalList){
             double rentalAmount = rental.getRentalAmount();
-            frequentRenterPoints += rental.getFrequentRentalPoints();
             result += rental.addFigures(rentalAmount);
-            totalAmount += rentalAmount;
 		}
-        result += getSummary(totalAmount, frequentRenterPoints);
+        result += addFooter(calculateTotalAmount(), getTotalFrequentPoints(rentalList));
 		return result;
 	}
 
-    private String getSummary(double totalAmount, int frequentRenterPoints) {
+    public int getTotalFrequentPoints(List<Rental> rentalList) {
+        int frequentRenterPoints = 0;
+        for (Rental rental : rentalList)
+            frequentRenterPoints += rental.getFrequentRentalPoints();
+        return frequentRenterPoints;
+    }
+
+    private String addFooter(double totalAmount, int frequentRenterPoints) {
         return "Amount owed is " + totalAmount +"\n" +"You earned "
                 + frequentRenterPoints +" frequent renter points";
     }
