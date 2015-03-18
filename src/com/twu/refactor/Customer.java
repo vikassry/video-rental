@@ -33,11 +33,11 @@ public class Customer {
             double rentalAmount = rental.getRentalAmount();
             result += rental.addFigures(rentalAmount);
 		}
-        result += addFooter(calculateTotalAmount(), getTotalFrequentPoints(rentalList));
+        result += addFooter(calculateTotalAmount(), getTotalRenterPoints(rentalList));
 		return result;
 	}
 
-    public int getTotalFrequentPoints(List<Rental> rentalList) {
+    public int getTotalRenterPoints(List<Rental> rentalList) {
         int frequentRenterPoints = 0;
         for (Rental rental : rentalList)
             frequentRenterPoints += rental.getFrequentRentalPoints();
