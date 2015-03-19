@@ -3,7 +3,7 @@ package com.twu.refactor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Billable {
 	private String name;
 	private ArrayList<Rental> rentalList = new ArrayList<Rental>();
 
@@ -15,28 +15,34 @@ public class Customer {
 		rentalList.add(rental);
 	}
 
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
-    public double calculateTotalAmount() {
-        double total = 0.0;
-        for (Rental rental : rentalList) {
-            total += rental.getRentalAmount();
-        }
-        return total;
+    @Override
+    public List<Rental> getRentalList(){
+        return rentalList;
     }
+//    public double calculateTotalAmount() {
+//        double total = 0.0;
+//        for (Rental rental : rentalList) {
+//            total += rental.getRentalAmount();
+//        }
+//        return total;
+//    }
+//
+//	public String statement() {
+//		String result = "Rental Record for " + getName() + "\n";
+//        for (Rental rental : rentalList){
+//            double rentalAmount = rental.getRentalAmount();
+//            result += rental.addFigures(rentalAmount);
+//		}
+//        result += addFooter(calculateTotalAmount(), getTotalRenterPoints(rentalList));
+//		return result;
+//	}
 
-	public String statement() {
-		String result = "Rental Record for " + getName() + "\n";
-        for (Rental rental : rentalList){
-            double rentalAmount = rental.getRentalAmount();
-            result += rental.addFigures(rentalAmount);
-		}
-        result += addFooter(calculateTotalAmount(), getTotalRenterPoints(rentalList));
-		return result;
-	}
-
+    @Override
     public int getTotalRenterPoints(List<Rental> rentalList) {
         int frequentRenterPoints = 0;
         for (Rental rental : rentalList)
@@ -44,10 +50,10 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    private String addFooter(double totalAmount, int frequentRenterPoints) {
-        return "Amount owed is " + totalAmount +"\n" +"You earned "
-                + frequentRenterPoints +" frequent renter points";
-    }
+//    private String addFooter(double totalAmount, int frequentRenterPoints) {
+//        return "Amount owed is " + totalAmount +"\n" +"You earned "
+//                + frequentRenterPoints +" frequent renter points";
+//    }
 
     public String htmlStatement() {
         double totalAmount = 0.0;

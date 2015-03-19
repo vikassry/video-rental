@@ -17,7 +17,7 @@ public class Rental {
     }
 
     double getRentalAmount() {
-        return  movie.getPriceCode().getCostFor(daysRented);
+        return  movie.getCostFor(daysRented);
     }
 
     public String addFigures(double amount) {
