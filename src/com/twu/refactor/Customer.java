@@ -24,24 +24,6 @@ public class Customer implements Billable {
     public List<Rental> getRentalList(){
         return rentalList;
     }
-//    public double calculateTotalAmount() {
-//        double total = 0.0;
-//        for (Rental rental : rentalList) {
-//            total += rental.getRentalAmount();
-//        }
-//        return total;
-//    }
-//
-//	public String statement() {
-//		String result = "Rental Record for " + getName() + "\n";
-//        for (Rental rental : rentalList){
-//            double rentalAmount = rental.getRentalAmount();
-//            result += rental.addFigures(rentalAmount);
-//		}
-//        result += addFooter(calculateTotalAmount(), getTotalRenterPoints(rentalList));
-//		return result;
-//	}
-
     @Override
     public int getTotalRenterPoints(List<Rental> rentalList) {
         int frequentRenterPoints = 0;
@@ -49,11 +31,6 @@ public class Customer implements Billable {
             frequentRenterPoints += rental.getFrequentRentalPoints();
         return frequentRenterPoints;
     }
-
-//    private String addFooter(double totalAmount, int frequentRenterPoints) {
-//        return "Amount owed is " + totalAmount +"\n" +"You earned "
-//                + frequentRenterPoints +" frequent renter points";
-//    }
 
     public String htmlStatement() {
         double totalAmount = 0.0;

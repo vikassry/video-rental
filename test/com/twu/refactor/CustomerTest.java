@@ -15,8 +15,10 @@ public class CustomerTest extends TestCase {
 	private Movie la = new Movie("LA Confidential", MoviePricingCategory.NEW_RELEASE);
 	private Movie trek = new Movie("Star Trek 13.2", MoviePricingCategory.NEW_RELEASE);
 	private Movie wallace = new Movie("Wallace and Gromit", MoviePricingCategory.CHILDREN);
+    Statement statement;
 
     public void setUp (){
+        statement = new Statement();
        dinsdale.addRental(new Rental (python, 3));
        dinsdale.addRental(new Rental (ran, 1));
        dinsdale.addRental(new Rental (la, 2));
@@ -26,15 +28,15 @@ public class CustomerTest extends TestCase {
 
     public void testEmpty() throws Exception {
     	dinsdale = new Customer("Dinsdale Pirhana");
-        equalsFile("1st Output", "outputEmpty", dinsdale.statement());
+        equalsFile("1st Output", "outputEmpty", statement.getStatement(dinsdale));
     }
     public void testCustomer() throws Exception {
-        equalsFile("1st Output", "output1", dinsdale.statement());
+        equalsFile("1st Output", "output1", statement.getStatement(dinsdale));
     }
 
     public void testChange() throws Exception {
     	la.setPriceCode(MoviePricingCategory.REGULAR);
-        equalsFile("1st Output", "outputChange", dinsdale.statement());
+        equalsFile("1st Output", "outputChange", statement.getStatement(dinsdale));
     }
 
     public void testHtml() throws Exception {

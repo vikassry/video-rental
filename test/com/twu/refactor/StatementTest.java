@@ -53,21 +53,19 @@ public class StatementTest {
         Statement statement = new Statement();
         assertEquals(statement.getHeader(dinsdale),"Rental Record for Dinsdale Pirhana\n");
     }
-//    @Test
-//    public void getStatementReturnsStringRepresentationOfCustomer() throws IOException {
-//        Statement statement = new Statement();
-//        String expectedStatement = "Rental Record for Dinsdale Pirhana\n";
-//        equalsFile("message", "output1", Statement.getStatement(dinsdale,rentalList));
-//
-//    }
 
-    protected void equalsFile(String message, String fileName, String actualValue) throws IOException {
+    @Test
+    public void getStatementReturnsStringRepresentationOfCustomer() throws IOException {
+        Statement statement = new Statement();
+        equalsFile("output1", statement.getStatement(dinsdale));
+    }
+
+    protected void equalsFile(String fileName, String actualValue) throws IOException {
         BufferedReader file = new BufferedReader (new FileReader (GOLD_PATH + '/' + fileName));
         BufferedReader actualStream = new BufferedReader (new StringReader (actualValue));
-        String thisFileLine = null;
+        String thisFileLine;
         while  ((thisFileLine = file.readLine()) != null) {
             assertEquals ("in file: " + fileName, thisFileLine, actualStream.readLine());
         }
     }
-
 }

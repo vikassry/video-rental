@@ -21,8 +21,9 @@ public class Statement {
         return "Rental Record for " +customer.getName() + "\n";
     }
 
-    public String getStatement(Billable customer, List<Rental> rentalList) {
+    public String getStatement(Billable customer) {
         String result = getHeader(customer);
+        List<Rental> rentalList = customer.getRentalList();
         for (Rental rental : rentalList){
             double rentalAmount = rental.getRentalAmount();
             result += rental.addFigures(rentalAmount);
