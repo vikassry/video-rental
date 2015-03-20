@@ -24,12 +24,10 @@ public class Statement {
     public String getStatement(Billable customer) {
         String result = getHeader(customer);
         List<Rental> rentalList = customer.getRentalList();
-        for (Rental rental : rentalList){
-            double rentalAmount = rental.getRentalAmount();
-            result += rental.addFigures(rentalAmount);
-        }
+        for (Rental rental : rentalList)
+            result += rental.addFiguresInText(rental.getRentalAmount());
         result += addFooter(calculateTotalAmount(rentalList), customer.getTotalRenterPoints(rentalList));
         return result;
     }
-
 }
+

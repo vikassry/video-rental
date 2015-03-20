@@ -31,20 +31,4 @@ public class Customer implements Billable {
             frequentRenterPoints += rental.getFrequentRentalPoints();
         return frequentRenterPoints;
     }
-
-    public String htmlStatement() {
-        double totalAmount = 0.0;
-        int extraRentalPoints = 0;
-        String htmlStatement = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>";
-        for (Rental rental : rentalList){
-            extraRentalPoints += rental.getFrequentRentalPoints();
-            totalAmount += rental.getRentalAmount();
-            htmlStatement += rental.getMovie().getTitle()+": "+
-                            rental.getRentalAmount()+ "<BR>";
-        }
-        htmlStatement += "<P>You owe <EM>"+totalAmount+"</EM>" +
-                         "<P>On this rental you earned <EM>"+
-                        extraRentalPoints+"</EM> frequent renter points<P>";
-        return htmlStatement;
-    }
 }

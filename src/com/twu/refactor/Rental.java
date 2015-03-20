@@ -20,8 +20,12 @@ public class Rental {
         return  movie.getCostFor(daysRented);
     }
 
-    public String addFigures(double amount) {
+    public String addFiguresInText(double amount) {
         return "\t"+ getMovie().getTitle()+"\t"+ String.valueOf(amount)+"\n";
+    }
+
+    public String addFiguresInHtml(double amount) {
+        return getMovie().getTitle()+": "+amount+"<BR>";
     }
 
     public int getFrequentRentalPoints() {
